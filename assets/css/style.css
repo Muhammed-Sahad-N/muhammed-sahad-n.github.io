@@ -6888,14 +6888,17 @@ html, body {
 /* ========================================== */
 @media screen and (max-width: 768px) {
     
-    /* 1. Reduce the top black gap (shrunk down to 90px) */
+    /* 1. Eliminate the huge black gap and stack the layout */
     section#home, 
-    .home,
-    .home-content {
-        padding-top: 90px !important; 
+    .home {
+        padding-top: 110px !important; /* Pushes text just below the header */
+        min-height: auto !important; /* Stops the section from stretching too far */
+        display: flex !important;
+        flex-direction: column !important; /* Forces text on top, photo on bottom */
+        align-items: center !important;
     }
 
-    /* 2. Keep the dark mobile dropdown menu (This is working!) */
+    /* 2. Dark mobile dropdown menu (Working perfectly) */
     .navbar, 
     .nav-menu,
     .nav-links,
@@ -6908,24 +6911,22 @@ html, body {
         color: #ffffff !important;
     }
 
-    /* 3. Force the "Get in Touch" button to display */
+    /* 3. Keep the "Get in Touch" button visible */
     .btn-box a, 
     .home-content a,
     .btn {
         display: inline-flex !important; 
-        margin-top: 10px !important;
+        margin-top: 15px !important;
     }
 
-    /* 4. Aggressive fix to un-hide the photo */
-    section#home img,
-    .home-img, 
-    .home-img img,
-    .img-box {
+    /* 4. Force the Glass Profile Card to display on mobile */
+    .slide-in-right.delay-photo,
+    .glass-profile-card {
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
-        width: 250px !important;
-        height: auto !important;
-        margin: 30px auto !important;
+        width: 100% !important;
+        max-width: 280px !important; /* Perfect size for phone screens */
+        margin: 40px auto 20px auto !important; /* Centers it and adds spacing above */
     }
 }
