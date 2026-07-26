@@ -6883,3 +6883,43 @@ html, body {
     text-shadow: 0 0 12px rgba(56, 189, 248, 0.8) !important;
     font-size: 32px !important; /* Makes the dot slightly more pronounced */
 }
+/* ========================================== */
+/* MOBILE-ONLY FIXES (Phones & Small Tablets) */
+/* ========================================== */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Push the Home text down so it doesn't overlap the logo/header */
+    section#home, 
+    .home,
+    .home-content {
+        padding-top: 140px !important; 
+    }
+
+    /* 2. Fix the white background on the mobile dropdown menu */
+    .navbar, 
+    .nav-menu,
+    .nav-links,
+    header ul {
+        background-color: #090714 !important; /* Matches your dark midnight theme */
+        backdrop-filter: blur(10px) !important;
+        border-bottom: 1px solid rgba(56, 189, 248, 0.2) !important; /* Subtle cyan line */
+    }
+
+    /* 3. Ensure the text inside the mobile menu is readable */
+    .navbar a, 
+    .nav-menu a,
+    .nav-links a,
+    header ul li a {
+        color: #ffffff !important;
+    }
+    /* 4. Force the profile picture to display on mobile */
+    .home-img, 
+    .home-img img,
+    .about-img,
+    .about-img img,
+    .profile-pic {
+        display: block !important;
+        max-width: 250px !important; /* Prevents the image from being too massive */
+        margin: 20px auto !important; /* Centers the image neatly */
+    }
+}
