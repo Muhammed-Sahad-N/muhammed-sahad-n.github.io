@@ -6888,38 +6888,44 @@ html, body {
 /* ========================================== */
 @media screen and (max-width: 768px) {
     
-    /* 1. Push the Home text down so it doesn't overlap the logo/header */
+    /* 1. Reduce the top black gap (shrunk down to 90px) */
     section#home, 
     .home,
     .home-content {
-        padding-top: 140px !important; 
+        padding-top: 90px !important; 
     }
 
-    /* 2. Fix the white background on the mobile dropdown menu */
+    /* 2. Keep the dark mobile dropdown menu (This is working!) */
     .navbar, 
     .nav-menu,
     .nav-links,
     header ul {
-        background-color: #090714 !important; /* Matches your dark midnight theme */
+        background-color: #090714 !important; 
         backdrop-filter: blur(10px) !important;
-        border-bottom: 1px solid rgba(56, 189, 248, 0.2) !important; /* Subtle cyan line */
+        border-bottom: 1px solid rgba(56, 189, 248, 0.2) !important; 
     }
-
-    /* 3. Ensure the text inside the mobile menu is readable */
-    .navbar a, 
-    .nav-menu a,
-    .nav-links a,
-    header ul li a {
+    .navbar a, .nav-menu a, .nav-links a, header ul li a {
         color: #ffffff !important;
     }
-    /* 4. Force the profile picture to display on mobile */
+
+    /* 3. Force the "Get in Touch" button to display */
+    .btn-box a, 
+    .home-content a,
+    .btn {
+        display: inline-flex !important; 
+        margin-top: 10px !important;
+    }
+
+    /* 4. Aggressive fix to un-hide the photo */
+    section#home img,
     .home-img, 
     .home-img img,
-    .about-img,
-    .about-img img,
-    .profile-pic {
+    .img-box {
         display: block !important;
-        max-width: 250px !important; /* Prevents the image from being too massive */
-        margin: 20px auto !important; /* Centers the image neatly */
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 250px !important;
+        height: auto !important;
+        margin: 30px auto !important;
     }
 }
