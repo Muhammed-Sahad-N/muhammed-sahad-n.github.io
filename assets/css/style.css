@@ -6888,30 +6888,43 @@ html, body {
 /* ========================================== */
 @media screen and (max-width: 768px) {
     
-    /* 1. Eliminate the huge black gap and stack the layout */
+    /* 1. Remove the solid black box behind the logo */
+    header {
+        background: transparent !important; 
+    }
+
+    /* 2. Stack the Home Section and Fix Spacing */
     section#home, 
     .home {
-        padding-top: 110px !important; /* Pushes text just below the header */
-        min-height: auto !important; /* Stops the section from stretching too far */
+        padding-top: 100px !important; 
+        height: auto !important; 
+        min-height: 100vh !important; 
         display: flex !important;
-        flex-direction: column !important; /* Forces text on top, photo on bottom */
-        align-items: center !important;
+        flex-direction: column !important; /* Text on top, photo on bottom */
+        overflow: visible !important;
     }
 
-    /* 2. Dark mobile dropdown menu (Working perfectly) */
-    .navbar, 
-    .nav-menu,
-    .nav-links,
-    header ul {
-        background-color: #090714 !important; 
-        backdrop-filter: blur(10px) !important;
-        border-bottom: 1px solid rgba(56, 189, 248, 0.2) !important; 
-    }
-    .navbar a, .nav-menu a, .nav-links a, header ul li a {
-        color: #ffffff !important;
+    /* 3. Force the Photo Container to Show (Overrides your inline HTML styles) */
+    .slide-in-right.delay-photo {
+        display: flex !important;
+        width: 100% !important;
+        min-width: 0 !important; /* This fixes the 320px inline style constraint */
+        visibility: visible !important;
+        opacity: 1 !important;
+        transform: none !important; /* Prevents animations from throwing it off-screen */
+        margin-top: 40px !important;
+        margin-bottom: 50px !important;
     }
 
-    /* 3. Keep the "Get in Touch" button visible */
+    /* 4. Size the Glass Profile Card perfectly for phones */
+    .glass-profile-card {
+        width: 100% !important;
+        max-width: 280px !important;
+        margin: 0 auto !important;
+        display: block !important;
+    }
+
+    /* 5. Make sure both buttons stay visible */
     .btn-box a, 
     .home-content a,
     .btn {
@@ -6919,14 +6932,13 @@ html, body {
         margin-top: 15px !important;
     }
 
-    /* 4. Force the Glass Profile Card to display on mobile */
-    .slide-in-right.delay-photo,
-    .glass-profile-card {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        width: 100% !important;
-        max-width: 280px !important; /* Perfect size for phone screens */
-        margin: 40px auto 20px auto !important; /* Centers it and adds spacing above */
+    /* 6. Keep your dark mobile menu styles */
+    .navbar, .nav-menu, .nav-links, header ul {
+        background-color: #090714 !important; 
+        backdrop-filter: blur(10px) !important;
+        border-bottom: 1px solid rgba(56, 189, 248, 0.2) !important; 
+    }
+    .navbar a, .nav-menu a, .nav-links a, header ul li a {
+        color: #ffffff !important;
     }
 }
