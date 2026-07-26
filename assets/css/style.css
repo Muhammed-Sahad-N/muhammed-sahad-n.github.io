@@ -184,35 +184,41 @@ Masterly template contains couple color like:
   font-weight: 900;
   font-style: italic;
 }
-/*===== Commen css =====*/
+/*===== Common css =====*/
 body {
   width: 100%;
   height: 100%;
   position: relative;
-  font-family: "Montserrat";
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
+  background: radial-gradient(circle at top left, #171033 0%, #090714 80%) !important;
+  color: #94a3b8; 
 }
+
 body::-webkit-scrollbar {
   width: 10px !important;
   height: 10px !important;
   padding: 8px !important;
   border-radius: 10px !important;
 }
+
 body::-webkit-scrollbar-track {
   height: 10px !important;
   padding: 8px !important;
-  background-color: #ececec !important;
+  background-color: #120e21 !important; /* Dark track to match the theme */
   -webkit-box-shadow: inset 0 0 0px rgba(0, 0, 0, 0) !important;
   border-radius: 10px !important;
 }
+
 body::-webkit-scrollbar-thumb {
   height: 10px !important;
   padding: 8px !important;
-  background-color: #7189cb !important;
+  background-color: #a855f7 !important; /* Purple accent thumb */
   border-radius: 10px !important;
 }
+
 body::-webkit-scrollbar-thumb:hover {
-  background-color: #799ffe !important;
+  background-color: #38bdf8 !important; /* Blue accent on hover */
 }
 
 h1 {
@@ -6045,4 +6051,835 @@ section.ms-instagram-section {
 @keyframes blinkCursor {
     from, to { opacity: 1; }
     50% { opacity: 0; }
+}
+/* ==========================================
+   MOBILE RESPONSIVENESS FIXES
+========================================== */
+
+@media (max-width: 768px) {
+    /* 1. Shrink the main Data Analyst title */
+    .gradient-hero-title {
+        font-size: 2.8rem !important; 
+        line-height: 1.2 !important; 
+    }
+
+    /* 2. Fix the "I am a..." typing text overlap */
+    .gradient-hero-title + div {
+        font-size: 20px !important; 
+        height: auto !important; 
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+    }
+
+    /* 3. Prevent the left column from breaking on very small screens */
+    .ms-detail {
+        min-width: 100% !important; 
+    }
+
+    /* 4. Adjust the intro paragraph for readability */
+    .ms-detail p {
+        font-size: 15px !important;
+        line-height: 1.6 !important;
+    }
+
+    /* 5. Shrink intro animation text for mobile screens */
+    .intro-row-1 {
+        font-size: 36px !important;
+        gap: 10px !important;
+    }
+    .intro-row-2 {
+        font-size: 42px !important;
+    }
+}
+/* ==========================================
+   ABOUT SECTION, SKILLS & COMPETENCIES
+========================================== */
+
+/* 1. Make section transparent to show global dark background */
+.ms-about-section {
+    background-color: transparent !important;
+}
+
+/* 2. Gradient Text for "About Me" Heading */
+.section-title h2 { 
+    background: linear-gradient(to right, #a855f7, #38bdf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+.section-title h2 span { 
+    -webkit-text-fill-color: transparent; 
+}
+.section-title .ligh-title {
+    color: rgba(255, 255, 255, 0.03) !important;
+}
+
+/* 3. Left Side Text Styling */
+.ms-about-detail h4 { color: #e2e8f0; margin-bottom: 20px; font-weight: 600; }
+.ms-about-detail p.ms-text { color: #94a3b8; line-height: 1.7; margin-bottom: 15px; }
+
+/* Personal Info List */
+.ms-about-info ul li { color: #cbd5e1; margin-bottom: 10px; }
+.ms-about-info ul li .title { color: #a855f7; font-weight: 600; width: 100px; display: inline-block; }
+.ms-about-info ul li .title b { float: right; margin-right: 15px; color: #475569; }
+
+/* 4. Core Technical Stack & Competencies Headings */
+.skills-title { 
+    color: #ffffff !important; 
+    margin-bottom: 35px; 
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+/* Adds the modern glowing blue underline */
+.skills-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 50px; 
+    height: 3px;
+    background: #38bdf8;
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+}
+
+/* Forces the 8 icons into a symmetrical grid */
+.modern-skills-grid { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 20px 35px; /* Adjusts vertical and horizontal spacing */
+    justify-content: center;
+    max-width: 450px; /* Restricts width so it perfectly breaks into 4-on-top, 4-on-bottom */
+    margin: 0 auto; 
+}
+
+/* Removes standard card backgrounds for the minimal "floating" look */
+.skill-card {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-weight: 500;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 75px; 
+    transition: all 0.3s ease;
+    animation: floatingEffect 4s ease-in-out infinite; 
+}
+
+/* Staggered floating animations so they don't move identically */
+.skill-card:nth-child(even) { animation-delay: 1s; }
+.skill-card:nth-child(3n) { animation-delay: 2s; }
+
+.skill-icon {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    transition: all 0.4s ease;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4)); 
+}
+
+/* Hover Effects */
+.skill-card:hover {
+    color: #38bdf8;
+    animation-play-state: paused; 
+    transform: translateY(-8px) scale(1.1);
+}
+.skill-card:hover .skill-icon {
+    filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.8)); 
+}
+
+@keyframes floatingEffect {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+}
+
+/* 5. Core Competencies Tags */
+.competencies-section {
+    text-align: center;
+}
+
+.competencies-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.competency-tag {
+    background: rgba(56, 189, 248, 0.05);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    color: #cbd5e1;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.competency-tag:hover {
+    background: rgba(168, 85, 247, 0.15);
+    border-color: #a855f7;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) { 
+    .modern-skills-grid { 
+        justify-content: center; 
+        max-width: 100%;
+    }
+    .skills-title { 
+        margin-top: 40px; 
+    }
+}
+/* ==========================================
+   HEADER & NAVIGATION BAR (SOLID DARK ON SCROLL)
+========================================== */
+
+/* 1. Default state at the very top (Transparent) */
+header, 
+header.ms-static,
+.navbar {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* 2. Scrolled state (Solid Theme Color) */
+header[class*="sticky"], 
+header[class*="fixed"], 
+header.is-sticky, 
+.ms-static.is-sticky {
+    /* Matches the dark purple from your background gradient perfectly */
+    background-color: #171033 !important; 
+    backdrop-filter: none !important; 
+    -webkit-backdrop-filter: none !important;
+    /* Adds a sleek drop shadow so it pops out above your content */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+/* 3. Menu Links - Crisp Light Gray */
+.navbar-nav .nav-item .nav-link.ms-nav {
+    color: #e2e8f0 !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease;
+}
+
+/* 4. Menu Links - Glowing Cyan on Hover & Active Scroll */
+.navbar-nav .nav-item.active .nav-link.ms-nav,
+.navbar-nav .nav-item .nav-link.ms-nav:hover {
+    color: #38bdf8 !important;
+    text-shadow: 0 0 8px rgba(56, 189, 248, 0.5) !important;
+}
+/* ==========================================
+   SERVICES SECTION (3D FLIP GLASS OVERRIDE)
+========================================== */
+
+/* 1. Transparent Background & Prevent Scrollbars during animation */
+.ms-service-section {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+.overflow-hidden {
+    overflow-x: hidden;
+}
+
+/* 2. Glassmorphism for the FRONT of the card */
+.service-box .main-box .custom-glass-front {
+    background: rgba(255, 255, 255, 0.03) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 20px !important;
+}
+
+/* 3. Deep Glowing Dark Theme for the BACK of the card */
+.service-box .main-box .custom-glass-back {
+    background: linear-gradient(135deg, #171033 0%, #090714 100%) !important;
+    border: 1px solid rgba(56, 189, 248, 0.3) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 30px rgba(56, 189, 248, 0.2) !important;
+}
+
+/* 4. Fix Typography Colors */
+.box-front .content-wrap h3, 
+.box-back .content-wrap h3 {
+    color: #e2e8f0 !important;
+}
+.box-front .content-wrap p {
+    color: #94a3b8 !important;
+}
+.box-back .content-wrap p {
+    color: #cbd5e1 !important;
+}
+
+/* 5. Invert the dark PNG images so they glow Cyan/White on the dark theme */
+.flipper .content-wrap .svg_img, 
+.box-front .bg-img {
+    filter: brightness(0) invert(1) drop-shadow(0px 0px 8px rgba(56, 189, 248, 0.6)) !important;
+    opacity: 0.9 !important;
+}
+
+/* 6. Glowing Cyan Button on the back side */
+.box-back .custom-btn {
+    border-color: #38bdf8 !important;
+    color: #38bdf8 !important;
+    border-radius: 20px !important;
+}
+.box-back .custom-btn:hover {
+    background-color: #38bdf8 !important;
+    color: #090714 !important;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.6) !important;
+}
+/* Hide the duplicate decorative corner icon */
+.box-front .bg-img {
+    display: none !important;
+}
+/* ==========================================
+   WORK EXPERIENCE SECTION (FIXED TIMELINE OVERRIDE)
+========================================== */
+
+/* 1. Make sure section is transparent */
+.ms-experience-section {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* 2. Fix the Timeline Colors (Line & Dot) */
+/* The Bottom Tick Mark */
+.ms-experience-section .timeline:after {
+    border-bottom: 1px solid rgba(56, 189, 248, 0.5) !important;
+}
+
+/* The Dot */
+.timeline-marker:before {
+    border: 2px solid #38bdf8 !important; /* Cyan border */
+    background-color: #090714 !important; /* Dark center */
+    box-shadow: 0 0 8px rgba(56, 189, 248, 0.6) !important;
+    transition: all 0.3s ease !important;
+}
+
+/* The Vertical Line */
+.timeline-marker:after {
+    border-right: 1px solid rgba(56, 189, 248, 0.3) !important; /* Cyan glowing line */
+}
+
+/* Hover state for the Dot */
+.timeline-item:hover .timeline-marker:before {
+    background-color: #38bdf8 !important;
+    box-shadow: 0 0 15px #38bdf8 !important;
+    transform: scale(1.3);
+}
+
+/* 3. The Glassmorphism Content Box */
+.timeline-content.custom-glass-timeline {
+    background: rgba(255, 255, 255, 0.03) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 16px !important;
+    padding: 25px !important; /* Inner padding for text */
+    margin-top: 15px !important; /* Pushes the box slightly below the date */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+    transition: all 0.4s ease !important;
+}
+
+/* Hover state for the Glass Box */
+.timeline-item:hover .timeline-content.custom-glass-timeline {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(56, 189, 248, 0.4) !important;
+    box-shadow: 0 15px 35px rgba(56, 189, 248, 0.15) !important;
+    transform: translateX(8px) !important; /* Lifts it slightly to the right */
+}
+
+/* 4. Fix Typography Formatting */
+.timeline-info span {
+    color: #38bdf8 !important; /* Glowing cyan date */
+    font-size: 13px !important;
+}
+
+.timeline-content .timeline-title {
+    color: #e2e8f0 !important; /* Crisp white company name */
+}
+
+.timeline-content .timeline-title .sub {
+    color: #a855f7 !important; /* Purple role */
+}
+
+.timeline-content p {
+    color: #94a3b8 !important; /* Light gray text */
+    line-height: 1.7 !important;
+}
+/* ==========================================
+   EDUCATION & CERTIFICATIONS OVERRIDE
+========================================== */
+
+/* 1. Transparent Background */
+.ms-education-section {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* 2. Column Sub-headings (EDUCATION / CERTIFICATIONS) */
+.column-sub-title {
+    color: #e2e8f0 !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    letter-spacing: 1.5px !important;
+    text-transform: uppercase !important;
+    margin-bottom: 25px !important;
+    border-left: 3px solid #38bdf8 !important;
+    padding-left: 12px !important;
+}
+
+/* 3. Text & Details Formatting */
+.custom-glass-timeline .edu-detail {
+    color: #94a3b8 !important;
+    font-size: 14px !important;
+    margin-bottom: 4px !important;
+}
+
+.custom-glass-timeline .edu-detail strong {
+    color: #cbd5e1 !important;
+}
+
+/* 4. Certificate Link Button */
+.cert-link {
+    display: inline-block !important;
+    margin-top: 10px !important;
+    color: #38bdf8 !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    transition: all 0.3s ease !important;
+    text-decoration: none !important;
+}
+
+.cert-link:hover {
+    color: #a855f7 !important;
+    text-shadow: 0 0 8px rgba(168, 85, 247, 0.6) !important;
+    transform: translateX(4px) !important;
+}
+/* 5. Fix Timeline Structural Positioning for Education Section */
+.ms-education-section .timeline {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5em;
+    list-style: none;
+    position: relative;
+}
+
+.ms-education-section .timeline .timeline-item {
+    padding-left: 40px;
+    position: relative; /* This stops the dots from flying to the top! */
+}
+
+.ms-education-section .timeline:after {
+    content: "";
+    background: transparent;
+    width: 15px;
+    height: auto;
+    border: none;
+    border-radius: 0;
+    top: 0;
+    bottom: 0px;
+    position: absolute;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.5) !important;
+}
+/* ==========================================
+   PORTFOLIO SECTION (DARK GLASSMORPHISM & PIN FEATURE)
+========================================== */
+
+/* 1. Transparent Background */
+.ms-portfolio-section {
+    background: transparent !important;
+}
+
+/* 2. Sleek Filter Menu (Glass Pills) */
+.portfolio-tabs.custom-glass-tabs ul li {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 20px !important;
+    padding: 8px 20px !important;
+    color: #94a3b8 !important;
+    margin: 5px !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+}
+
+/* Active and Hover states for Filter Menu */
+.portfolio-tabs.custom-glass-tabs ul li:hover,
+li.mixitup-control-active {
+    background: rgba(56, 189, 248, 0.1) !important;
+    border-color: #38bdf8 !important;
+    color: #38bdf8 !important;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.3) !important;
+}
+
+/* 3. The Glass Project Card */
+.glass-portfolio-card {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 20px !important;
+    padding: 15px !important;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 30px;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    transition: all 0.4s ease !important;
+}
+
+/* Lift Effect when hovering over the card */
+.glass-portfolio-card:hover {
+    border-color: rgba(56, 189, 248, 0.4) !important;
+    box-shadow: 0 15px 35px rgba(56, 189, 248, 0.15) !important;
+    transform: translateY(-8px);
+}
+
+/* 4. Image Styling & Zoom Effect */
+.glass-portfolio-card .portfolio-img {
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+}
+
+.glass-portfolio-card .portfolio-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+.glass-portfolio-card:hover .portfolio-img img {
+    transform: scale(1.1) !important; /* Gentle zoom on hover */
+}
+
+/* 5. The Hover Overlay (Slide-Up Glass Panel) */
+.glass-overlay {
+    position: absolute;
+    bottom: 15px; /* Aligns inside the card padding */
+    left: 15px;
+    right: 15px;
+    background: rgba(9, 7, 20, 0.92) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border-top: 1px solid rgba(56, 189, 248, 0.4) !important;
+    border-radius: 0 0 12px 12px;
+    padding: 25px 20px;
+    text-align: center;
+    transform: translateY(120%); /* Hides it below the image initially */
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+.glass-portfolio-card:hover .glass-overlay {
+    transform: translateY(0); /* Slides up on hover */
+    opacity: 1;
+}
+
+/* Overlay Text & Button */
+.glass-overlay h4 {
+    color: #e2e8f0 !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    margin-bottom: 8px !important;
+}
+
+.glass-overlay p {
+    color: #cbd5e1 !important;
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    margin-bottom: 15px !important;
+}
+
+.glass-overlay .custom-btn {
+    border: 1px solid #38bdf8 !important;
+    color: #38bdf8 !important;
+    background: transparent !important;
+    border-radius: 20px !important;
+}
+
+.glass-overlay .custom-btn:hover {
+    background: #38bdf8 !important;
+    color: #090714 !important;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.6) !important;
+}
+
+/* 6. The "Pinned" Badge */
+.pin-badge {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%) !important; /* Glowing Purple */
+    color: white !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    padding: 4px 10px !important;
+    border-radius: 12px !important;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(168, 85, 247, 0.5) !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* 7. Tech Stack Tags (Color Coded) */
+.tech-tags {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    z-index: 10;
+    display: flex;
+    gap: 5px;
+}
+
+.tech-tags span {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    padding: 4px 8px !important;
+    border-radius: 8px !important;
+    color: #fff !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
+}
+
+/* Custom Tool Colors */
+.tag-excel { background: #107c41 !important; } /* Official Excel Green */
+.tag-powerbi { background: #f2c811 !important; color: #000 !important; } /* Power BI Yellow */
+.tag-sql { background: #00758f !important; } /* Standard SQL Blue */
+.tag-python { background: #3776ab !important; } /* Python Blue */
+
+/* ==========================================
+   CONTACT SECTION (DARK MAP & GLASS FORM)
+========================================== */
+
+/* 1. Transparent Background */
+.ms-contact-section {
+    background: transparent !important;
+}
+
+/* 2. Dark Mode Google Map Trick */
+.glass-map-container {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 10px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-map-container iframe {
+    width: 100%;
+    height: 300px;
+    border-radius: 12px;
+    border: none;
+    /* This filter inverts the map colors to match a dark theme! */
+    filter: invert(90%) hue-rotate(180deg) brightness(85%) contrast(85%) grayscale(20%);
+    transition: filter 0.4s ease;
+}
+
+.glass-map-container:hover iframe {
+    filter: invert(90%) hue-rotate(180deg) brightness(95%) contrast(95%) grayscale(10%);
+}
+
+/* 3. Direct Contact Cards (Email & WhatsApp) */
+.contact-info-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.contact-info-card i {
+    font-size: 28px;
+    color: #38bdf8;
+    transition: all 0.3s ease;
+}
+
+.contact-info-card span {
+    display: block;
+    color: #e2e8f0;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.contact-info-card p {
+    margin: 0;
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+/* Specific Hover Colors */
+.contact-info-card.email:hover {
+    border-color: #38bdf8;
+    background: rgba(56, 189, 248, 0.05);
+    transform: translateY(-3px);
+}
+
+.contact-info-card.whatsapp:hover {
+    border-color: #25D366; /* WhatsApp Green */
+    background: rgba(37, 211, 102, 0.05);
+    transform: translateY(-3px);
+}
+
+.contact-info-card.whatsapp:hover i {
+    color: #25D366;
+}
+
+/* 4. Glassmorphism Form Inputs */
+.glass-contact-form {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 30px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-input {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #e2e8f0 !important;
+    border-radius: 10px !important;
+    padding: 12px 15px !important;
+    transition: all 0.3s ease !important;
+}
+
+.glass-input::placeholder {
+    color: #64748b !important;
+}
+
+.glass-input:focus {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: #38bdf8 !important;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.2) !important;
+    outline: none !important;
+}
+
+/* Submit Button Adjustments */
+.glass-contact-form .custom-btn {
+    border-radius: 10px !important;
+    padding: 12px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    margin-top: 10px;
+}
+/* ==========================================
+   MINIMALIST GLASS FOOTER
+========================================== */
+.glass-footer {
+    background: rgba(255, 255, 255, 0.01);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 30px 0 20px;
+    margin-top: 50px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.footer-social-links a {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: #94a3b8;
+    margin: 0 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.footer-social-links a:hover {
+    background: rgba(56, 189, 248, 0.1);
+    border-color: #38bdf8;
+    color: #38bdf8;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+    transform: translateY(-3px);
+}
+
+.copyright-text {
+    color: #64748b;
+    font-size: 13px;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+/* ==========================================
+   AGGRESSIVE SCROLLBAR FIX
+========================================== */
+
+/* 1. Prevent base HTML/Body white bleed-through */
+html, body {
+    background-color: #090714 !important; 
+}
+
+/* 2. Target the main scrollbar container */
+::-webkit-scrollbar {
+    width: 12px !important;
+    background: #090714 !important;
+    background-color: #090714 !important;
+}
+
+/* 3. Target every piece of the track */
+::-webkit-scrollbar-track, 
+::-webkit-scrollbar-track-piece {
+    background: #090714 !important;
+    background-color: #090714 !important;
+    border-radius: 0px !important;
+}
+
+/* 4. Target the bottom corner piece */
+::-webkit-scrollbar-corner {
+    background: #090714 !important;
+}
+
+/* 5. Style the thumb with a background-clip hack */
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #a855f7 0%, #38bdf8 100%) !important;
+    border-radius: 10px !important;
+    border: 3px solid #090714 !important; 
+    background-clip: padding-box !important; /* This stops the color from bleeding into the corners */
+}
+/* ==========================================
+   CUSTOM TEXT LOGO UPGRADE
+========================================== */
+.custom-logo {
+    font-size: 28px !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    letter-spacing: 1.5px !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Subtle glow when hovering over the name */
+.custom-logo:hover {
+    color: #e2e8f0 !important;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Neon glow for the cyan dot */
+.logo-dot {
+    color: #38bdf8 !important;
+    text-shadow: 0 0 12px rgba(56, 189, 248, 0.8) !important;
+    font-size: 32px !important; /* Makes the dot slightly more pronounced */
 }
